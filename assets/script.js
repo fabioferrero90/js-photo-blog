@@ -47,7 +47,10 @@ Risposta dell'endpoint:
 ]
 */
 const domElements = {
-  polaroidWrapper: document.getElementById('polaroid-wrapper')
+  polaroidWrapper: document.getElementById('polaroid-wrapper'),
+  lightBox: document.getElementById('lightbox'),
+  lightBoxImage: document.getElementById('lightbox-image-wrapper'),
+  lightBoxClose: document.querySelector('#lightbox button')
 }
 
 axios.get(endpoint)
@@ -58,7 +61,11 @@ axios.get(endpoint)
     console.log(error);
   })
 
-function printPhoto({ title, url }) {
+domElements.lightBoxClose.addEventListener('click', () => {
+  domElements.lightBox.classList.add('d-none')
+})
+
+function printPhoto({ title, thumbnailUrl, url }) {
   const newPhoto = document.createElement('div');
   newPhoto.className = 'polaroid position-relative';
   newPhoto.innerHTML = `
@@ -66,13 +73,24 @@ function printPhoto({ title, url }) {
         <img src="./assets/img/pin.svg" alt="">
       </div>
       <div class="photo-wrapper">
-        <img src="${url}" alt="example pic">
+        <img src="${thumbnailUrl}" alt="example pic">
       </div>
       <div class="photo-caption">
         <p>${title}</p>
       </div>
     `;
   domElements.polaroidWrapper.appendChild(newPhoto);
+  newPhoto.addEventListener('mouseenter', el => {
+    doCardHover(el.target)
+  })
+
+  newPhoto.addEventListener('mouseleave', el => {
+    doCardUnhover(el.target)
+  })
+
+  newPhoto.addEventListener('click', () => {
+    showLightBox(url, title)
+  })
 }
 
 function printAlbum(photoList) {
@@ -80,4 +98,21 @@ function printAlbum(photoList) {
   photoList.forEach(photo => {
     printPhoto(photo)
   });
+}
+
+function doCardHover(target) {
+  const pin = target.querySelector('.pin');
+  pin.classList.add('d-none')
+  target.classList.add('polaroid-hover')
+}
+
+function doCardUnhover(target) {
+  const pin = target.querySelector('.pin');
+  pin.classList.remove('d-none')
+  target.classList.remove('polaroid-hover')
+}
+
+function showLightBox(url, title) {
+  domElements.lightBoxImage.innerHTML = `<img src="${url}" alt="${title}">`;
+  domElements.lightBox.classList.remove('d-none')
 }
