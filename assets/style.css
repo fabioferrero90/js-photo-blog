@@ -1,0 +1,50 @@
+
+img{
+  max-width: 100%;
+}
+
+.header-title{
+  font-family: "Fredoka", serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 6.5rem;
+  font-style: italic;
+}
+
+#header-wrapper{
+  min-height: 150px;
+  height: 20vh;
+  background-image: url('./img/wall.png');
+}
+
+#main-wrapper{
+  height:80vh;
+  background-image: url('./img/cork.png');
+}
+
+.polaroid-wrapper{
+  gap:25px;
+}
+
+.polaroid{
+  width:calc(100% / 3 - 25px);
+  background-color: white;
+  padding:20px;
+  aspect-ratio: 3 / 3.5;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pin{
+  position: relative;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.polaroid p{
+  font-family: "Vibur", cursive;
+  font-size:1.2rem;
+  padding:.5rem 0;
+}
