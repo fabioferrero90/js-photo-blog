@@ -4,6 +4,10 @@ img{
   width: 100%;
 }
 
+.hide{
+  opacity:0;
+}
+
 #lightbox{
   position: absolute;
   width:100%;
@@ -42,10 +46,11 @@ img{
   aspect-ratio: 3 / 3.5;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
+  transition: all .2s ease;
 }
 
 .polaroid-hover{
-  transform: rotate(5deg) scale(1.1);
+  transform: rotate(3deg) scale(1.1);
   z-index:2;
 }
 
@@ -56,6 +61,7 @@ img{
   transform: translate(-50%, -50%);
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all .3s ease;
 }
 
 .polaroid p{
