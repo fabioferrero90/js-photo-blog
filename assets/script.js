@@ -46,3 +46,38 @@ Risposta dell'endpoint:
   }
 ]
 */
+const domElements = {
+  polaroidWrapper: document.getElementById('polaroid-wrapper')
+}
+
+axios.get(endpoint)
+  .then(response => {
+    printAlbum(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  })
+
+function printPhoto({ title, url }) {
+  const newPhoto = document.createElement('div');
+  newPhoto.className = 'polaroid position-relative';
+  newPhoto.innerHTML = `
+      <div class="pin position-absolute">
+        <img src="./assets/img/pin.svg" alt="">
+      </div>
+      <div class="photo-wrapper">
+        <img src="${url}" alt="example pic">
+      </div>
+      <div class="photo-caption">
+        <p>${title}</p>
+      </div>
+    `;
+  domElements.polaroidWrapper.appendChild(newPhoto);
+}
+
+function printAlbum(photoList) {
+  domElements.polaroidWrapper.innerHTML = '';
+  photoList.forEach(photo => {
+    printPhoto(photo)
+  });
+}
