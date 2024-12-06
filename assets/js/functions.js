@@ -15,16 +15,16 @@ function capitalizeFirstWord(str) {
 }
 
 // Funzione per stampare in pagina le foto inviate dalla funzione printPhotos(), aggiungendogli le funzioni di hover e click
-function printPhoto({ title, thumbnailUrl, url }) {
+function printPhoto({ title, url }) {
   const caption = capitalizeFirstWord(title)
   const newPhoto = document.createElement('div');
-  newPhoto.className = 'polaroid position-relative';
+  newPhoto.className = 'polaroid position-relative d-none';
   newPhoto.innerHTML = `
       <div class="pin position-absolute">
         <img src="./assets/img/pin.svg" alt="">
       </div>
       <div class="photo-wrapper">
-        <img src="${thumbnailUrl}" alt="${title}">
+        <img src="${url}" alt="${title}" onerror="this.src='${placeHolderPhoto}'" onload="this.parentNode.parentNode.classList.remove('d-none')">
       </div>
       <div class="photo-caption">
         <p>${caption}</p>
@@ -63,7 +63,7 @@ function doCardHover(target) {
 
 // Funzione che mostra il lightbox popolandone il contenuto
 function showLightBox(url, title) {
-  domElements.lightBoxImage.innerHTML = `<img src="${url}" alt="${title}">`;
+  domElements.lightBoxImage.innerHTML = `<img src="${url}" alt="${title}" onerror="this.src='${placeHolderPhoto}'">`;
   domElements.lightBox.classList.remove('d-none')
 }
 

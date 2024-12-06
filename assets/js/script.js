@@ -3,6 +3,7 @@ const endpoint = "https://jsonplaceholder.typicode.com/photos?_limit=144";
 let isLoading = false;
 let visibleCount = 12;
 let photos = [];
+const placeHolderPhoto = "./assets/img/placeholder.jpg"
 
 // Includo in un oggetto gli elementi che mi serviranno nello script
 const domElements = {
