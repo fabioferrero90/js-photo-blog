@@ -1,4 +1,8 @@
-// Funzione che gestisce il numero di foto da stampare in pagina (viene richiamata ogni volta che si scorre la pagina)
+let isLoading = false;
+let visibleCount = 12;
+const placeHolderPhoto = "./assets/img/placeholder.jpg"
+
+// Funzione che gestisce il numero di foto da stampare in pagina (viene richiamata ogni volta che si scorre la pagina oltre un certo limite)
 function displayMorePhotos() {
   isLoading = true;
   const photosToShow = photos.slice(visibleCount, visibleCount + 6);
@@ -7,7 +11,7 @@ function displayMorePhotos() {
   isLoading = false;
 }
 
-// Funzione per capitalizzare la prima parola di una stringa
+// Funzione per capitalizzare la prima parola di una stringa (Non era richiesto dall'esercizio ma l'ho ritenuto più corretto)
 function capitalizeFirstWord(str) {
   const words = str.split(' ');
   words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
@@ -41,7 +45,7 @@ function printPhotos(photoList) {
   });
 }
 
-// Funzione che applica le funzioni di click e hover alle schede delle immagini
+// Funzione che applica le funzioni di click e hover alle schede delle immagini (Potevo farle anche in CSS)
 function applyDomEvents(element, url, title) {
   element.addEventListener('mouseenter', el => {
     doCardHover(el.target)

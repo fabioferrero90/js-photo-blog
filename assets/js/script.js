@@ -1,9 +1,5 @@
-// Dichiaro l'endpoint e le variabili utili al funzionamento del codice
-const endpoint = "https://jsonplaceholder.typicode.com/photos?_limit=144";
-let isLoading = false;
-let visibleCount = 12;
+// Inizializzo un array in cui inserirò le foto ricevute dalla chiamata API
 let photos = [];
-const placeHolderPhoto = "./assets/img/placeholder.jpg"
 
 // Includo in un oggetto gli elementi che mi serviranno nello script
 const domElements = {
@@ -13,9 +9,12 @@ const domElements = {
   lightBoxClose: document.querySelector('#lightbox button'),
 }
 
+// Dichiaro l'endpoint e le variabili utili al funzionamento del codice
+const endpoint = "https://jsonplaceholder.typicode.com/photos?_limit=144";
+
 // Triggero la chiamata AJAX all'API fornita
 axios.get(endpoint)
-  //Alla ricezione della risposta, invio l'array di foto alla funzione che le gestirà
+  //Alla ricezione della risposta, inserisco la risposta nell'array di foto e triggero la funzione che le gestirà
   .then(response => {
     photos = response.data;
     displayMorePhotos();
